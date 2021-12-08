@@ -27,7 +27,7 @@ DEBUG = True
 
 APPEND_SLASH = True
 
-ALLOWED_HOSTS = ["localhost"]
+ALLOWED_HOSTS = ["localhost", 'django-app123.us-south.cf.appdomain.cloud', 'django-app123.us-south.cf.appdomain.cloud/static']
 
 
 # Application definition
