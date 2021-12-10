@@ -26,6 +26,10 @@ urlpatterns = [
     path(route='static', view=views.renderStatic, name='static'),
     path(route='about', view=views.aboutPage, name='about'),
     path(route='contact', view=views.contactPage, name='contact'),
+    path('dealer/<str:dealer_id>/', views.get_dealer_details, name=
+    'dealer_details'),
+    # path for add a review view
+    path('review/<str:dealer_id>', views.add_review, name='add_review'),
     # path for dealer reviews view
 
     # path for add a review view
