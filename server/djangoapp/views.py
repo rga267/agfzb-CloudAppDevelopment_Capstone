@@ -117,7 +117,7 @@ def contactPage(request):
 def get_dealerships(request):
     context = {}
     if request.method == "GET":
-        url = "https://ed95a2d2.eu-gb.apigw.appdomain.cloud/api/dealerships"
+        url = "https://fb7fdd70.us-south.apigw.appdomain.cloud/api/dealership"
         dealerships = get_dealers_from_cf(url)
         context["dealership_list"] = dealerships
         return render(request, 'djangoapp/index.html', context)
@@ -126,7 +126,7 @@ def get_dealerships(request):
 def get_dealer_details(request, dealer_id):
     context = {}
     if request.method == "GET":
-        url = "https://ed95a2d2.eu-gb.apigw.appdomain.cloud/api/review"
+        url = "https://fb7fdd70.us-south.apigw.appdomain.cloud/api/review"
         dealer_details = get_dealer_reviews_from_cf(url, dealerId=dealer_id)
         context["review_list"] = dealer_details
         context["dealer_id"] = dealer_id
@@ -160,7 +160,7 @@ def add_review(request, dealer_id):
 
         print('review', review)
 
-        url="https://ed95a2d2.eu-gb.apigw.appdomain.cloud/api/review"
+        url="https://fb7fdd70.us-south.apigw.appdomain.cloud/api/review"
 
         json_result = post_request(url, {"review": review})
         print(json_result)
