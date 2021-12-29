@@ -11,6 +11,7 @@ from django.contrib import messages
 from datetime import datetime
 import logging
 import json
+import pdb
 
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
@@ -140,6 +141,7 @@ def add_review(request, dealer_id):
         context["cars"] = CarModel.objects.all()
         print(CarModel.objects.all())
         return render(request, 'djangoapp/add_review.html', context)
+        
     elif request.method == 'POST':
         print("POST add_review")
 
@@ -154,7 +156,7 @@ def add_review(request, dealer_id):
         if form.get("purchasecheck"):
             review["purchase_date"] = datetime.strptime(form.get("purchase_date"), "%m/%d/%Y").isoformat()
             car = CarModel.objects.get(pk=form['car'])
-            review["car_make"] = car.maker.name
+            review["car_make"] = car.carMake.name
             review["car_model"] = car.name
             review["car_year"] = car.year.strftime('%Y')
 
@@ -164,6 +166,7 @@ def add_review(request, dealer_id):
 
         json_result = post_request(url, {"review": review})
         print(json_result)
+        
         return redirect("djangoapp:dealer_details", dealer_id=dealer_id)
 # Create a `get_dealer_details` view to render the reviews of a dealer
 # def get_dealer_details(request, dealer_id):

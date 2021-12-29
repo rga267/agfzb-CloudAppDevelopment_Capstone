@@ -1,11 +1,13 @@
 import requests
 import json
 import asyncio
+import pdb
 from .models import CarDealer, DealerReview
 from requests.auth import HTTPBasicAuth
 from ibm_watson import NaturalLanguageUnderstandingV1
 from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
 from ibm_watson.natural_language_understanding_v1 import Features,SentimentOptions
+
 
 
 # Create a `get_request` to make HTTP GET requests
@@ -74,6 +76,7 @@ def get_dealers_from_cf(url, **kwargs):
 # - Call get_request() with specified arguments
 # - Parse JSON results into a DealerView object list
 def get_dealer_reviews_from_cf(url, **kwargs):
+    
     results = []
     json_result = get_request(url, **kwargs)
     if json_result and "reviews" in json_result:
@@ -93,7 +96,7 @@ def get_dealer_reviews_from_cf(url, **kwargs):
             review_obj.sentiment = analyze_review_sentiments(review_obj.review)
 
             results.append(review_obj)
-
+            
     return results
 
 # Create an `analyze_review_sentiments` method to call Watson NLU and analyze text
@@ -103,7 +106,7 @@ def get_dealer_reviews_from_cf(url, **kwargs):
 def analyze_review_sentiments(text):
     api_key='w7E8ZhbwnkFbETyI_bfFLdrtO63vy-U9LzrC8gutWPeB'
     authenticator = IAMAuthenticator(api_key)
-    natural_language_understanding = NaturalLanguageUnderstandingV1(version='2021-12-10',authenticator=authenticator )
+    natural_language_understanding = NaturalLanguageUnderstandingV1(version='2021-08-01',authenticator=authenticator )
     url = "https://api.us-south.natural-language-understanding.watson.cloud.ibm.com/instances/a90e52f9-be49-495a-86ba-2bd1ade29609"
     natural_language_understanding.set_service_url(url)
 

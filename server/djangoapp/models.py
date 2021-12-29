@@ -27,8 +27,6 @@ class CarModel(models.Model):
     type_of_vehicle = models.CharField(max_length=100, choices=CAR_TYPE, null=False)
     year = models.DateField(null=False)
 
-    def __str__(self):
-        return self.carMake+" , "+self.name+" , "+self.year
 
 class CarDealer:
     def __init__(self, address, city, full_name, id, lat, long, short_name, st, state, zip):
@@ -71,7 +69,7 @@ class DealerReview:
         self.id = id
 
     def __str__(self):
-        return "Dealership: " + self.dealership 
+        return "Dealership: " + self.dealership
 
 
 
